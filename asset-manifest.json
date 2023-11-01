@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/react-gh-pages/static/css/main.a0073905.css",
-    "main.js": "/react-gh-pages/static/js/main.dc632023.js",
-    "static/js/787.28cb0dcd.chunk.js": "/react-gh-pages/static/js/787.28cb0dcd.chunk.js",
-    "static/media/logo.svg": "/react-gh-pages/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/react-gh-pages/index.html",
-    "main.a0073905.css.map": "/react-gh-pages/static/css/main.a0073905.css.map",
-    "main.dc632023.js.map": "/react-gh-pages/static/js/main.dc632023.js.map",
-    "787.28cb0dcd.chunk.js.map": "/react-gh-pages/static/js/787.28cb0dcd.chunk.js.map"
+    "main.css": "/WebsiteJigberg/static/css/main.a0073905.css",
+    "main.js": "/WebsiteJigberg/static/js/main.14f708f7.js",
+    "static/js/787.28cb0dcd.chunk.js": "/WebsiteJigberg/static/js/787.28cb0dcd.chunk.js",
+    "static/media/logo.svg": "/WebsiteJigberg/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/WebsiteJigberg/index.html",
+    "main.a0073905.css.map": "/WebsiteJigberg/static/css/main.a0073905.css.map",
+    "main.14f708f7.js.map": "/WebsiteJigberg/static/js/main.14f708f7.js.map",
+    "787.28cb0dcd.chunk.js.map": "/WebsiteJigberg/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a0073905.css",
-    "static/js/main.dc632023.js"
+    "static/js/main.14f708f7.js"
   ]
 }
