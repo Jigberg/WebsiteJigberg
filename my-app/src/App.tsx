@@ -1,6 +1,5 @@
 import React from 'react';
 import rotateSVG from './resources/Courage.svg';
-import './App.css';
 
 function App() {
   return (
