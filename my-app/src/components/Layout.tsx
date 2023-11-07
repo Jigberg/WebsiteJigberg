@@ -11,7 +11,7 @@ const Layout: React.FC<Props> = ({ children }) => {
             <HeaderC title = "Test"/>
 
             {/* CONTENT */}
-            <main>{children}</main>
+            <main className="h-full w-full">{children}</main>
 
         </div>
     );
