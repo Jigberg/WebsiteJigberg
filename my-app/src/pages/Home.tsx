@@ -5,7 +5,7 @@ import "../css/spin.css";
 
 function Home() {
     return (
-        <div className="flex h-full justify-center items-center">
+        <div className="flex min-h-screen w-screen justify-center items-center">
             <img src={rotateSVG} className="max-w-full max-h-full animate-spin-custom" alt="Courage" />
         </div>
     );

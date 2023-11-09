@@ -1,5 +1,6 @@
 import React from 'react';
 import HeaderC from './Header';
+import Footer from './Footer';
 
 interface Props {
     children: React.ReactNode;
@@ -7,12 +8,13 @@ interface Props {
 
 const Layout: React.FC<Props> = ({ children }) => {
     return (
-        <div className="bg-mgrey h-screen w-screen">
-            <HeaderC title = "Test"/>
+        <div className="bg-mgrey min-h-screen w-full">
+            <HeaderC />
 
             {/* CONTENT */}
-            <main className="h-full w-full">{children}</main>
+            <main className="flex">{children}</main>
 
+            <Footer />
         </div>
     );
 };
