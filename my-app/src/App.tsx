@@ -1,15 +1,19 @@
 import React from 'react';
-import rotateSVG from './resources/Courage.svg';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
 import Layout from './components/Layout';
-import "./css/spin.css";
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
     <Layout>
-        <div className="flex h-full justify-center items-center">
-          <img src={rotateSVG} className="max-w-full max-h-full animate-spin-custom" alt="Courage" />
-        </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
     </Layout >
   );
 }
