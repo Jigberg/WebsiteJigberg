@@ -26,7 +26,7 @@ function Cube() {
 
 const ThreeTest: React.FC = () => {
     return (
-        <Canvas style={{ height: '800px' }}>
+        <Canvas style={{ height: '500px', width: '500px' }}>
             <ambientLight />
             <pointLight position={[10, 10, 10]} />
             <Cube />
