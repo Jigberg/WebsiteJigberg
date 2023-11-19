@@ -15,15 +15,13 @@ const MyModel = () => {
 
 const ModelViewer: React.FC = () => {
   return (
-    <div className='flex-1 flex items-center justify-center w-full'>
-      <Canvas>
-        <ambientLight />
-        <pointLight position={[10, 10, 10]} />
-        <MyModel />
-        <OrbitControls enableZoom={false}/>
-        {/* <Stats /> */}
-      </Canvas>
-    </div>
+    <Canvas style={{height: '100vh', width: '100vw', position: 'absolute', top: 0 }}>
+      <ambientLight />
+      <pointLight position={[10, 10, 10]} />
+      <MyModel />
+      <OrbitControls/>
+      {/* <Stats /> */}
+    </Canvas>
   );
 };
 
