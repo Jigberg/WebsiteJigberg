@@ -16,7 +16,7 @@ const MyModel = () => {
 }
 
 
-const Door: React.FC = () => {
+const ModelViewer: React.FC = () => {
   return (
     <Canvas style={{ height: '500px', width: '500px' }}>
       <ambientLight />
@@ -26,4 +26,4 @@ const Door: React.FC = () => {
   );
 };
 
-export default Door;
+export default ModelViewer;
