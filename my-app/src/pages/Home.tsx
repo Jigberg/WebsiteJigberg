@@ -4,12 +4,13 @@ import 'tailwindcss/tailwind.css';
 import "../css/spin.css";
 import "../components/ThreeTest";
 import ThreeTest from '../components/ThreeTest';
+import Door from '../components/Door';
 
 function Home() {
     return (
         <div className="min-h-screen w-screen">
             <div className = "h-[800px]">
-                <ThreeTest />
+                <Door />
             </div>
             <div className = "h-[800px]">
                 <ThreeTest />
