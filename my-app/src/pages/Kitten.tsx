@@ -6,13 +6,8 @@ import ModelViewer from '../components/ModelViewer';
 
 function Kitten() {
     return (
-        <div className="min-h-screen w-screen">
-            <div className = "h-[800px]">
+        <div className="flex-1 flex-col w-screen flex items-center justify-center">
                 <ModelViewer />
-            </div>
-            {/* <div className = "h-[800px]">
-                <ThreeTest />
-            </div> */}
         </div>
     );
 }

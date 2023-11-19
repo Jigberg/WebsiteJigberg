@@ -8,11 +8,11 @@ interface Props {
 
 const Layout: React.FC<Props> = ({ children }) => {
     return (
-        <div className="bg-mgrey min-h-screen w-full">
+        <div className="flex flex-col bg-mgrey min-h-screen w-full">
             <HeaderC />
 
             {/* CONTENT */}
-            <main className="flex">{children}</main>
+            <main className="flex-1 flex flex-col">{children}</main>
 
             <Footer />
         </div>
