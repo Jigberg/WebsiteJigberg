@@ -6,7 +6,7 @@ import "../components/ThreeTest";
 
 function Home() {
     return (
-        <div className="flex-1 flex items-center justify-center w-full">
+        <div className="h-screen flex items-center justify-center w-full ">
             <img src={rotateSVG} className="max-w-full max-h-full animate-spin-custom" alt="Courage" />
         </div>
     );
