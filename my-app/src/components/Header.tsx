@@ -4,11 +4,11 @@ import { Link, NavLink } from 'react-router-dom';
 
 const Header: React.FC = () => {
   return (
-    <header className="p-4 text-white">
+    <header className="p-4 text-white absolute z-10 w-screen">
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
           <div className="text-2xl font-bold">Your Logo</div>
-          <nav>
+          <nav className='right-1'>
             <ul className="flex space-x-4">
               <li className="hover:text-gray-300">
 

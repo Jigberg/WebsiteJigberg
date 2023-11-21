@@ -15,7 +15,7 @@ const MyModel = () => {
 
 const ModelViewer: React.FC = () => {
   return (
-    <Canvas style={{height: '100vh', width: '100vw', position: 'absolute', top: 0 }}>
+    <Canvas>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <MyModel />
