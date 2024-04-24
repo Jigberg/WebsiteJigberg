@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Footer: React.FC = () => {
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseEnter = () => {
+    setTimeout(() => {
+      setIsHovering(true);
+    }, 1000);
+    setTimeout(() => {
+      setIsHovering(false);
+    }, 7000); // Animation is 6 seconds long
+  };
+
   return (
     <footer className="p-3 text text-white absolute z-10 w-screen bottom-0">
       <div className="flex items-center space-x-8">
-        <p>&copy; {new Date().getFullYear()} Lukas Jigberg</p>
+        <p
+          className={`cursor-default ${isHovering ? "animate-moveLeft" : ""}`}
+          onMouseEnter={handleMouseEnter}
+        >
+          &copy; {new Date().getFullYear()} Lukas Jigberg
+        </p>
         <nav>
           <ul className="flex space-x-4">
-            <li className="hover:text-gray-300">
+            <li className="hover:text-gray-300 hover:animate-wiggle">
               <a
                 href="https://github.com/Jigberg/WebsiteJigberg"
                 target="_blank"
@@ -23,7 +39,7 @@ const Footer: React.FC = () => {
                 </svg>
               </a>
             </li>
-            <li className="hover:text-gray-300">
+            <li className="hover:text-gray-300 hover:animate-wiggle">
               <a
                 href="https://www.linkedin.com/in/jigberg/"
                 target="_blank"

@@ -1,6 +1,4 @@
 import React from "react";
-import "tailwindcss/tailwind.css";
-import "../css/spin.css";
 import "../components/ThreeTest";
 import ModelViewer from "../components/ModelViewer";
 import { View } from "@react-three/drei";
