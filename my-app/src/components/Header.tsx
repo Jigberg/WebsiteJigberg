@@ -15,7 +15,7 @@ const NavigationItem: React.FC<{ to: string; text: string }> = ({
 const Header: React.FC = () => {
   return (
     <header className="absolute z-10 w-screen flex justify-between">
-      <div className="w-24 pl-4 pt-4">
+      {/* <div className="w-24 pl-4 pt-4">
         <svg
           viewBox="0 0 303 113"
           fill="none"
@@ -29,7 +29,7 @@ const Header: React.FC = () => {
             stroke-linecap="round"
           />
         </svg>
-      </div>
+      </div> */}
       <nav className="pt-4 pr-4 text-white">
         <ul className="flex">
           <NavigationItem to="/" text="Home" />

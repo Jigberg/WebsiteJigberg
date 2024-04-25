@@ -16,8 +16,8 @@ const Footer: React.FC = () => {
     <footer className="p-3 text text-white absolute z-10 w-screen bottom-0">
       <div className="flex items-center space-x-8">
         <p
-          className={`cursor-default ${isHovering ? "animate-moveLeft" : ""}`}
-          onMouseEnter={handleMouseEnter}
+          className={`cursor-pointer ${isHovering ? "animate-moveLeft" : ""}`}
+          onMouseDown={handleMouseEnter}
         >
           &copy; {new Date().getFullYear()} Lukas Jigberg
         </p>
