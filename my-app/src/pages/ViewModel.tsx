@@ -6,7 +6,7 @@ import { View } from "@react-three/drei";
 function ViewModel() {
   return (
     <div className="h-screen flex-col w-screen flex items-center justify-center">
-      <ModelViewer />
+      <ModelViewer  modelName="mushroom"/>
     </div>
   );
 }

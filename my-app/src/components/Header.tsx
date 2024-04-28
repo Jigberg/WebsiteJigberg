@@ -6,7 +6,7 @@ const NavigationItem: React.FC<{ to: string; text: string }> = ({
   text,
 }) => (
   <li className="hover:text-gray-300 w-24 flex items-center justify-center">
-    <NavLink to={to} className={({ isActive }) => (isActive ? "text-xl" : "")}>
+    <NavLink to={to} className={({ isActive }) => (isActive ? "underline" : "")}>
       {text}
     </NavLink>
   </li>
@@ -36,7 +36,7 @@ const Header: React.FC = () => {
           </ul>
         </nav>
       ) : (
-        <nav className="pt-4 pr-4 text-white">
+        <nav className="pt-6 px-4 text-white font-roboto text-xl">
           <ul className="flex">
             <NavigationItem to="/" text="Home" />
             <NavigationItem to="/viewModel" text="Models" />
