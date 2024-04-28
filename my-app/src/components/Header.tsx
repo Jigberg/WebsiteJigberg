@@ -13,10 +13,10 @@ const NavigationItem: React.FC<{ to: string; text: string }> = ({
 );
 
 const Header: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 720);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const handleResize = () => {
-    setIsMobile(window.innerWidth < 720);
+    setIsMobile(window.innerWidth < 768);
   };
 
   useEffect(() => {

@@ -6,7 +6,7 @@ function Home() {
     <div className="h-screen flex items-center justify-center w-full ">
       <img
         src={Courage}
-        className="max-w-full max-h-full animate-[spin_20s_linear_infinite]"
+        className="w-4/6 animate-[spin_20s_linear_infinite] md:w-96"
         alt="Courage"
       />
     </div>
