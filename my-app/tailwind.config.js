@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      height: {
+        "screen-120": "120vh",
+      },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
       },
