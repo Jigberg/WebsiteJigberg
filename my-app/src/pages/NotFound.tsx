@@ -1,7 +1,8 @@
 import React, { useRef, useState, useEffect, ChangeEvent, Suspense } from "react";
-import { Canvas } from "react-three-fiber";
-import { Stats, OrbitControls, useGLTF, Loader } from "@react-three/drei";
+import { Canvas, useFrame } from "react-three-fiber";
+import { Stats, OrbitControls, Stars, Sky, Environment, useGLTF, Loader, SpotLight } from "@react-three/drei";
 import ratPath from "../resources/3D/rat.glb";
+import { DirectionalLight } from "three";
 
 interface ScaleFactors {
   x: number;
@@ -21,7 +22,7 @@ const MyModel: React.FC<{ scaleFactors: ScaleFactors }> = ({
       position={[0, 0, 0]}
       ref={modelRef}
       scale={[scaleFactors.x, scaleFactors.y, scaleFactors.z]}
-      rotation={[0, -2, 0]}
+      rotation={[0, -2.3, 0]}
     />
   );
 };
@@ -57,88 +58,48 @@ const SpinningRat: React.FC = () => {
 
   return (
     <div className="h-screen flex-col w-screen flex items-center justify-center">
-      {isMobile ? (
-        <div className="h-full w-full">
-          <div className="h-full w-full absolute">
-            <Canvas>
-              <ambientLight />
-              <pointLight position={[10, 10, 10]} />
-              <Suspense fallback={null}>
-                <MyModel scaleFactors={scaleFactors} />
-              </Suspense>
-              <OrbitControls enableZoom={false} autoRotate={true} />
-              {/* {<Stats />} */}
-            </Canvas>
-          </div>
-          <div className="absolute h-full w-full flex flex-col justify-center items-center">
-            <p className="text-3xl text-white">Page Not Found</p>
-            <div className="absolute bottom-10 right-4 flex items-center flex-col font-roboto space-y-2 w-24">
-              <input
-                type="number"
-                id="scaleX"
-                value={scaleFactors.x}
-                onChange={(e) => handleInputChange(e, "x")}
-                className="shadow appearance-none border rounded w-full py-1 px-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-              <input
-                type="number"
-                id="scaleY"
-                value={scaleFactors.y}
-                onChange={(e) => handleInputChange(e, "y")}
-                className="shadow appearance-none border rounded w-full py-1 px-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-              <input
-                type="number"
-                id="scaleZ"
-                value={scaleFactors.z}
-                onChange={(e) => handleInputChange(e, "z")}
-                className="shadow appearance-none border rounded w-full py-1 px-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
-          </div>
+      <div className="h-full w-full absolute bg-[#101010]">
+        <Canvas>
+          <Suspense fallback={null}>
+            <MyModel scaleFactors={scaleFactors} />
+          </Suspense>
+          {isMobile ? (
+            <></>
+          ) : (
+            <OrbitControls enableZoom={false} autoRotate={false}/>
+          )}
+          <Environment far={1200} preset="sunset" />
+          <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
+          {/* {<Stats />} */}
+        </Canvas>
+        <Loader />
+      </div>
+      <div className="h-full w-full flex flex-col justify-center items-center">
+        <p className="text-3xl text-white z-10">Page Not Found</p>
+        <div className="absolute bottom-10 right-4 flex items-center flex-col font-roboto space-y-2 w-24">
+          <input
+            type="number"
+            id="scaleX"
+            value={scaleFactors.x}
+            onChange={(e) => handleInputChange(e, "x")}
+            className="shadow appearance-none border rounded w-full py-1 px-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+          <input
+            type="number"
+            id="scaleY"
+            value={scaleFactors.y}
+            onChange={(e) => handleInputChange(e, "y")}
+            className="shadow appearance-none border rounded w-full py-1 px-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+          <input
+            type="number"
+            id="scaleZ"
+            value={scaleFactors.z}
+            onChange={(e) => handleInputChange(e, "z")}
+            className="shadow appearance-none border rounded w-full py-1 px-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
         </div>
-      ) : (
-        <div className="h-full w-full">
-          <div className="h-full w-full absolute">
-            <Canvas>
-              <ambientLight />
-              <pointLight position={[10, 10, 10]} />
-              <Suspense fallback={null}>
-                <MyModel scaleFactors={scaleFactors} />
-              </Suspense>
-              <OrbitControls enableZoom={false} autoRotate={true} />
-              {/* {<Stats />} */}
-            </Canvas>
-            <Loader />
-          </div>
-          <div className="h-full w-full flex flex-col justify-center items-center">
-            <p className="text-3xl text-white z-10">Page Not Found</p>
-            <div className="absolute bottom-10 right-4 flex items-center flex-col font-roboto space-y-2 w-24">
-              <input
-                type="number"
-                id="scaleX"
-                value={scaleFactors.x}
-                onChange={(e) => handleInputChange(e, "x")}
-                className="shadow appearance-none border rounded w-full py-1 px-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-              <input
-                type="number"
-                id="scaleY"
-                value={scaleFactors.y}
-                onChange={(e) => handleInputChange(e, "y")}
-                className="shadow appearance-none border rounded w-full py-1 px-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-              <input
-                type="number"
-                id="scaleZ"
-                value={scaleFactors.z}
-                onChange={(e) => handleInputChange(e, "z")}
-                className="shadow appearance-none border rounded w-full py-1 px-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
-          </div>
-        </div>
-      )}
+      </div>
     </div>
   );
 };
