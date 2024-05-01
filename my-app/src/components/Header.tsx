@@ -25,7 +25,7 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header className="absolute z-10 w-screen justify-between">
+    <header className="absolute z-10 justify-between w-full">
       {isMobile ? (
         <nav className="text-white pt-4 px-5">
           <ul className="flex flex-row justify-between">

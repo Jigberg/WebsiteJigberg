@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
   }, []);
 
   return (
-    <footer className="px-3 pb-3 text-white absolute z-10 w-screen bottom-0 font-roboto">
+    <footer className="px-3 pb-3 text-white absolute z-10 w-full bottom-0 font-roboto">
       {isMobile ? (
         <div className="flex space-x-6">
           <p className="text-sm">
