@@ -1,10 +1,9 @@
-.hiddenName{
-    opacity: 0;
-
-
+.hiddenName {
+  opacity: 0;
+  transition: 1s all;
 }
 
-.show{
-    background: #bb4a4a;
-    opacity: 1;
+.show {
+  background: #bb4a4a;
+  opacity: 1;
 }

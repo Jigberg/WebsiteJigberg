@@ -1,6 +1,21 @@
-import React, { useRef, useState, useEffect, ChangeEvent, Suspense } from "react";
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  ChangeEvent,
+  Suspense,
+} from "react";
 import { Canvas, useFrame } from "react-three-fiber";
-import { Stats, OrbitControls, Stars, Sky, Environment, useGLTF, Loader, SpotLight } from "@react-three/drei";
+import {
+  Stats,
+  OrbitControls,
+  Stars,
+  Sky,
+  Environment,
+  useGLTF,
+  Loader,
+  SpotLight,
+} from "@react-three/drei";
 import ratPath from "../resources/3D/rat.glb";
 import { DirectionalLight } from "three";
 
@@ -14,7 +29,32 @@ const MyModel: React.FC<{ scaleFactors: ScaleFactors }> = ({
   scaleFactors,
 }) => {
   const { scene } = useGLTF(ratPath) as any;
-  const modelRef = useRef();
+  const modelRef = useRef<THREE.Object3D>();
+  const [isRotating, setIsRotating] = useState(true);
+
+  useFrame(() => {
+    if (modelRef.current && isRotating) {
+      modelRef.current.rotation.y += 0.01; // Adjust the rotation speed as needed
+    }
+  });
+
+  useEffect(() => {
+    const handleMouseDown = () => {
+      setIsRotating(false);
+    };
+
+    const handleMouseUp = () => {
+      setIsRotating(true);
+    };
+
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, []);
 
   return (
     <primitive
@@ -35,8 +75,8 @@ const SpinningRat: React.FC = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const [scaleFactors, setScaleFactors] = useState<ScaleFactors>({
@@ -66,10 +106,18 @@ const SpinningRat: React.FC = () => {
           {isMobile ? (
             <></>
           ) : (
-            <OrbitControls enableZoom={false} autoRotate={false}/>
+            <OrbitControls enableZoom={false} autoRotate={false} />
           )}
           <Environment far={1200} preset="sunset" />
-          <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
+          <Stars
+            radius={100}
+            depth={50}
+            count={5000}
+            factor={4}
+            saturation={0}
+            fade
+            speed={1}
+          />
           {/* {<Stats />} */}
         </Canvas>
         <Loader />

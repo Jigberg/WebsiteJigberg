@@ -1,11 +1,24 @@
-import React from "react";
-import { memo, useRef, forwardRef } from 'react'
-import { suspend } from 'suspend-react'
+import React, { useEffect } from "react";
+import { memo, useRef, forwardRef } from "react";
+import { suspend } from "suspend-react";
 import { Canvas, useFrame, useThree } from "react-three-fiber";
-import { Stats, OrbitControls, Center, Stars, Backdrop, Sky, Environment, useGLTF, Loader, SpotLight, CameraControls } from "@react-three/drei";
+import {
+  Stats,
+  OrbitControls,
+  Center,
+  Stars,
+  Backdrop,
+  Sky,
+  Environment,
+  useGLTF,
+  Loader,
+  SpotLight,
+  CameraControls,
+} from "@react-three/drei";
 import Courage from "../resources/Courage.svg";
-import * as THREE from 'three'
+import * as THREE from "three";
 import record from "../resources/3D/record_player.glb";
+import "../css/Scroll.css";
 
 function MyModel() {
   const { scene } = useGLTF(record) as any;
@@ -20,26 +33,76 @@ function MyModel() {
       rotation={[0, 1, 0]}
     />
   );
-};
+}
 
 function Home() {
+  const observer = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    observer.current = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        } else {
+          entry.target.classList.remove("show");
+        }
+      });
+    });
+
+    const hiddenElements = document.querySelectorAll(".hiddenName");
+    hiddenElements.forEach((element) => {
+      observer.current?.observe(element);
+    });
+
+    return () => {
+      observer.current?.disconnect();
+    };
+  }, []);
+
+  const hiddenElements = document.querySelectorAll(".hiddenName");
+  hiddenElements.forEach((element) => {
+    observer.current?.observe(element);
+  });
+
   return (
     <div className="flex flex-col">
-      <div className="h-screen flex items-center justify-center w-full ">
-        <Canvas gl={{ preserveDrawingBuffer: true }} dpr={1.5} camera={{ position: [0, 40, 1], fov: 25 }}>
-        <ambientLight intensity={1.5 * Math.PI} />
-        <Sky />
+      <div className="hiddenName h-screen flex items-center justify-center w-full ">
+        <Canvas
+          gl={{ preserveDrawingBuffer: true }}
+          dpr={1.5}
+          camera={{ position: [0, 40, 1], fov: 25 }}
+        >
+          <ambientLight intensity={1.5 * Math.PI} />
+          <Sky />
           <group position={[0, 0, 0]} rotation={[0, 3, 0]}>
             <MyModel />
-            <Backdrop receiveShadow scale={[20, 5, 5]} floor={1.5} position={[0, 0, -2]}>
+            <Backdrop
+              receiveShadow
+              scale={[20, 5, 5]}
+              floor={1.5}
+              position={[0, 0, -2]}
+            >
               <meshPhysicalMaterial roughness={1} color="#efefef" />
             </Backdrop>
-            <rectAreaLight args={['white', 3]} width={5} height={5} position={[-3, 4, 1]} visible={true} />
+            <rectAreaLight
+              args={["white", 3]}
+              width={5}
+              height={5}
+              position={[-3, 4, 1]}
+              visible={true}
+            />
           </group>
           <OrbitControls />
         </Canvas>
       </div>
-      <div className="h-screen flex items-center justify-center w-full ">
+      <div className="hiddenName h-screen flex items-center justify-center w-full ">
+        <img
+          src={Courage}
+          className="w-4/6 animate-[spin_20s_linear_infinite] md:w-96"
+          alt="Courage"
+        />
+      </div>
+      <div className="hiddenName h-screen flex items-center justify-center w-full ">
         <img
           src={Courage}
           className="w-4/6 animate-[spin_20s_linear_infinite] md:w-96"
