@@ -34,7 +34,7 @@ const MyModel: React.FC<{ scaleFactors: ScaleFactors }> = ({
 
   useFrame(() => {
     if (modelRef.current && isRotating) {
-      modelRef.current.rotation.y += 0.01; // Adjust the rotation speed as needed
+      modelRef.current.rotation.y += 0.002; // Adjust the rotation speed as needed
     }
   });
 
@@ -113,7 +113,7 @@ const SpinningRat: React.FC = () => {
             radius={100}
             depth={50}
             count={5000}
-            factor={4}
+            factor={10}
             saturation={0}
             fade
             speed={1}
