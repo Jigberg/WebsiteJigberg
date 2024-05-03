@@ -13,3 +13,13 @@
           />
         </svg>
       </div> */}
+
+
+      <rectAreaLight
+              args={["white", 3]}
+              width={5}
+              height={5}
+              position={[-3, 4, 1]}
+              visible={true}
+            />
+            <Sky />
