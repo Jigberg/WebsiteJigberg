@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { memo, useRef, forwardRef } from "react";
+import { memo, useRef, useState, forwardRef } from "react";
 import { suspend } from "suspend-react";
+import { Selection, Select, EffectComposer, Outline } from '@react-three/postprocessing'
 import { Canvas, useFrame, useThree, PerspectiveCameraProps } from "react-three-fiber";
 import {
   Stats,
@@ -22,24 +23,18 @@ import * as THREE from "three";
 import record from "../resources/3D/record_player.glb";
 import "../css/Scroll.css";
 
-function MyModel() {
+function MyModel(props: any) {
   const { scene } = useGLTF(record) as any;
   const modelRef = useRef();
 
-  useEffect(() => {
-    if (modelRef.current) {
-      (modelRef.current as THREE.Mesh).castShadow = true;
-    }
-  }, []);
+  const [hovered, setHovered] = useState(false);
 
   return (
-    <primitive
-      object={scene}
-      position={[0, 0.04, 0]}
-      ref={modelRef}
-      scale={[1, 1, 1]}
-      rotation={[0, 1, 0]}
-    />
+    <Select enabled={hovered}>
+      <mesh ref={modelRef} {...props} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)} castShadow>
+        <primitive object={scene} receiveShadow />
+      </mesh>
+    </Select>
   );
 }
 
@@ -72,6 +67,23 @@ function Home() {
     observer.current?.observe(element);
   });
 
+  const handleClick = (value: string) => {
+    switch (value) {
+      case "record":
+        console.log("Record clicked");
+        break;
+      case "option2":
+        // Code for option 2
+        break;
+      case "option3":
+        // Code for option 3
+        break;
+      default:
+        console.log("Nuting");
+        break;
+    }
+  };
+
   return (
     <div className="flex flex-col">
       <div className="h-screen flex items-center justify-center w-full bg-[#BBBBBB]">
@@ -101,7 +113,12 @@ function Home() {
           <spotLight position={[0, 5, 10]} angle={0.3} />
 
           <group position={[0, 0, 0]} rotation={[0, 0, 0]}>
-            <MyModel />
+            <Selection>
+              <EffectComposer multisampling={8} autoClear={false}>
+                <Outline blur visibleEdgeColor={0xffffff} edgeStrength={10} width={1000} />
+              </EffectComposer>
+              <MyModel position={[0, 0.04, 0]} rotation={[0, 1, 0]} onClick={() => handleClick("record")} />
+            </Selection>
             <Backdrop
               receiveShadow
               scale={[20, 5, 5]}

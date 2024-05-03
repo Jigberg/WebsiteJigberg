@@ -23,3 +23,13 @@
               visible={true}
             />
             <Sky />
+
+
+{/* <primitive
+  object={scene}
+  position={[0, 0.04, 0]}
+  ref={modelRef}
+  scale={[1, (shiny ? 5 : 1), 1]}
+  rotation={[0, 1, 0]}
+/>
+*/}
