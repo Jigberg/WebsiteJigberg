@@ -28,6 +28,13 @@ function MyModel(props: any) {
   const modelRef = useRef();
 
   const [hovered, setHovered] = useState(false);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (hovered) {
+      setCount((prevCount) => prevCount + 1);
+    }
+  }, [hovered]);
 
   return (
     <Select enabled={hovered}>
@@ -98,6 +105,7 @@ function Home() {
             far={1000}
             onUpdate={(camera) => camera.updateProjectionMatrix()}
           />
+          <ambientLight intensity={0.5} />
           <directionalLight
             castShadow
             position={[0, 10, 0]}
@@ -125,24 +133,23 @@ function Home() {
               floor={1.5}
               position={[0, 0, -2]}
             >
-              <meshPhysicalMaterial roughness={1} color="#efefef" />
+              <meshPhysicalMaterial roughness={1} color="#B4D4FF" />
             </Backdrop>
           </group>
-          <OrbitControls />
+
         </Canvas>
       </div>
 
 
       <div className="h-screen w-full">
-        <div className="bg-gradient-to-b from-[#BBBBBB] to-[#282A3A] h-2/5" />
-        <div id="content" className="hiddenName h-full flex items-center justify-center">
+        <div className="absolute bg-gradient-to-b from-[#BBBBBB] to-[#282A3A] h-screen w-full" />
+        <div id="content" className="relative hiddenName h-full flex items-center justify-center">
           <img
             src={Courage}
             className="w-4/6 animate-[spin_20s_linear_infinite] md:w-96"
             alt="Courage"
           />
         </div>
-
       </div>
 
       <div className="hiddenName h-screen flex items-center justify-center w-full ">
