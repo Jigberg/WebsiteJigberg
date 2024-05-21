@@ -1,12 +1,19 @@
 import React, { useEffect } from "react";
 import { memo, useRef, useState, forwardRef } from "react";
 import { suspend } from "suspend-react";
-import { Selection, Select, EffectComposer, Outline } from '@react-three/postprocessing'
-import { Canvas, useFrame, useThree, PerspectiveCameraProps } from "react-three-fiber";
+import { Selection, Select, EffectComposer } from "@react-three/postprocessing";
+import {
+  Canvas,
+  useFrame,
+  useThree,
+  PerspectiveCameraProps,
+} from "react-three-fiber";
 import {
   Stats,
   OrbitControls,
   Center,
+  Outlines,
+  Text,
   Stars,
   Backdrop,
   Sky,
@@ -37,11 +44,15 @@ function MyModel(props: any) {
   }, [hovered]);
 
   return (
-    <Select enabled={hovered}>
-      <mesh ref={modelRef} {...props} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)} castShadow>
-        <primitive object={scene} receiveShadow />
-      </mesh>
-    </Select>
+    <mesh
+      ref={modelRef}
+      {...props}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
+      castShadow
+    >
+      <primitive object={scene} receiveShadow />
+    </mesh>
   );
 }
 
@@ -121,12 +132,14 @@ function Home() {
           <spotLight position={[0, 5, 10]} angle={0.3} />
 
           <group position={[0, 0, 0]} rotation={[0, 0, 0]}>
-            <Selection>
-              <EffectComposer multisampling={8} autoClear={false}>
-                <Outline blur visibleEdgeColor={0xffffff} edgeStrength={10} width={1000} />
-              </EffectComposer>
-              <MyModel position={[0, 0.04, 0]} rotation={[0, 1, 0]} onClick={() => handleClick("record")} />
-            </Selection>
+            <MyModel
+              position={[0, 0.04, 0]}
+              rotation={[0, 1, 0]}
+              onClick={() => handleClick("record")}
+            />
+            <Text color="black" anchorX="center" anchorY="middle">
+              hello world!
+            </Text>
             <Backdrop
               receiveShadow
               scale={[20, 5, 5]}
@@ -136,14 +149,15 @@ function Home() {
               <meshPhysicalMaterial roughness={1} color="#B4D4FF" />
             </Backdrop>
           </group>
-
         </Canvas>
       </div>
 
-
       <div className="h-screen w-full">
         <div className="absolute bg-gradient-to-b from-[#BBBBBB] to-[#282A3A] h-screen w-full" />
-        <div id="content" className="relative hiddenName h-full flex items-center justify-center">
+        <div
+          id="content"
+          className="relative hiddenName h-full flex items-center justify-center"
+        >
           <img
             src={Courage}
             className="w-4/6 animate-[spin_20s_linear_infinite] md:w-96"
